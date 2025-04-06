@@ -9,7 +9,7 @@ export default function getForm(id){
                                             <!-- <div class="flex flex-col flex-grow   space-y-4"> -->
                                                <div class="flex relative flex-col mr-7 flex-grow space-y-4">
                                                    <span>Дата *</span>
-                                                <button tabindex="-1" data-duplicate="requestDate" name="duplicateInputData" class="absolute top-10 right-0 color-gray-300">
+                                                <button data-tooltip="Скопировать значение поля  в остальные формы" tabindex="-1" data-duplicate="requestDate" name="duplicateInputData" class="absolute top-10 right-0 color-gray-300">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
                                                     <rect x="12" y="12" width="32" height="32" rx="8"/>
                                                     <rect x="20" y="20" width="32" height="32" rx="8"/>

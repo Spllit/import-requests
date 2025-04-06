@@ -74,36 +74,46 @@ const duplicateInuteData = () => {
     })
 }
 
-// function onDateTyping(){
-// const dateInputs = document.querySelectorAll('[name="requestDate"]')
-// dateInputs.forEach(input => {
-//     input.addEventListener("input", function () {
-//         let value = input.value.replace(/\D/g, ""); // Убираем все нецифровые символы
-        
-//         if (value.length > 14) {
-//             value = value.slice(0, 14); // Ограничиваем длину до 14 цифр
-//         }
-//         // 12:45:7890 12:34:56
-//         let date = [];
-//         let time = [];
-//         if (value.length > 0) date.push(value.slice(0, 2)); // День
-//         if (value.length > 2) date.push(value.slice(2, 4)); // Месяц
-//         if (value.length > 4) {date.push(value.slice(4, 8)); date.push(' ')} // Год
+function onDateTyping(){
+    const dateInputs = document.querySelectorAll('[name="requestDate"]');
 
-//         if (value.length > 8) time.push(value.slice(8, 10)); // Часы
-//         if (value.length > 10) time.push(value.slice(10, 12)); // Минуты
-//         if (value.length > 12) time.push(value.slice(12, 14)); // Секунды
-//         // let formattedValue = parts.join(value.length > 4 ? (value.length > 8 ? " " : ":") : "-");
-//         let formattedValue = `${date.join('-')} ${time.join(':')}`
-        
-//         // Устанавливаем курсор в конец
-//         // let cursorPosition = formattedValue.length;
-//         input.value = formattedValue;
-//         // input.setSelectionRange(cursorPosition, cursorPosition);
-//     });
-// })
+    dateInputs.forEach(input => {
+      input.addEventListener("input", function () {
+        // Убираем все нецифровые символы
+        let digits = input.value.replace(/\D/g, "");
+  
+        // Если ничего не введено — оставляем пустым
+        if (digits.length === 0) {
+          input.value = "";
+          return;
+        }
+  
+        // Ограничиваем длину до 14 символов
+        digits = digits.slice(0, 14);
+  
+        let parts = [];
+  
+        if (digits.length >= 1) parts.push(digits.slice(0, 2));       // День
+        if (digits.length >= 3) parts[1] = digits.slice(2, 4);         // Месяц
+        if (digits.length >= 5) parts[2] = digits.slice(4, 8);         // Год
+        if (digits.length >= 9) parts[3] = digits.slice(8, 10);        // Часы
+        if (digits.length >= 11) parts[4] = digits.slice(10, 12);      // Минуты
+        if (digits.length >= 13) parts[5] = digits.slice(12, 14);      // Секунды
+  
+        let formatted = "";
+  
+        if (parts.length >= 1) formatted += parts[0] || "";
+        if (parts.length >= 2) formatted += "-" + (parts[1] || "");
+        if (parts.length >= 3) formatted += "-" + (parts[2] || "");
+        if (parts.length >= 4) formatted += " " + (parts[3] || "");
+        if (parts.length >= 5) formatted += ":" + (parts[4] || "");
+        if (parts.length >= 6) formatted += ":" + (parts[5] || "");
+  
+        input.value = formatted;
+      });
+    });
 
-// }
+}
 
 function prepareData(){
 
@@ -154,25 +164,33 @@ function markRequiredInputs(){
     removeMessage()
 }
 function verifyData(){
-        let requestNumbersIsRepeated = true
+    const checkIsRepeated = () => {
+        let requestNumbersIsRepeated = false
         const requestNumbers = []
         for(let i = 0; i <= formInstances.length -1; i++){requestNumbers.push(formInstances[i].requestNumber)}
         if(requestNumbers.length){
             requestNumbers.forEach((numberTofind, i) => {
-                if(!requestNumbers.find((number) => number == numberTofind, i != requestNumbers.length -1 ? requestNumbers.slice(i+1) : [])){
-                    requestNumbersIsRepeated = false
+                const arrToFind = i != requestNumbers.length -1 ? requestNumbers.slice(i+1) : []
+                if(arrToFind.find((number) => number == numberTofind)){
+                    requestNumbersIsRepeated = true
+                    return
                 }
             })
 
         }
-        valid = !!(siteId && accessToken && !requestNumbersIsRepeated && formInstances.every((form) => {
-            return form.verifyForm()
-        }))
+        return requestNumbersIsRepeated
+    }
+    const numbersIsRepeated = checkIsRepeated()
+    const formsIsVerified = formInstances.every((form) => {return form.verifyForm() })
+        valid = !!(siteId && accessToken && !numbersIsRepeated && formsIsVerified)
         console.log(valid)
         if(valid) {
             prepareData()
             markRequiredInputs()
             removeMessage()
+        }
+        else if((siteId && accessToken) && formsIsVerified && numbersIsRepeated){
+            addMessage('error',throwMessage('Указаны повторяющиеся номера форм'))
         }
         else{
             markRequiredInputs()
@@ -214,18 +232,21 @@ function drawForms(){
 function addForms(){
     formAmount = Number(formAmountInput.value) || 1
     drawForms()
-    // onDateTyping()
+    onDateTyping()
     duplicateInuteData()
 
 }
 
-function onResponse({data} = data){
+function onSuccessResponse({data} = data){
     const amoutRequests = data.requests.length
     let successfulySent = 0
     data.requests.forEach(request => {
         if(request.imported) successfulySent++
     })
     addMessage('success', throwMessage(`Заявка(и) успешно отправлены! ${successfulySent} из ${amoutRequests}`))
+}
+function onErrorResponse(error){
+    addMessage('error', throwMessage(`Заявка(и) не были отправлены! Статус: ${error.status}`))
 }
      function send(siteId, accessToken, data){
          console.log(data)
@@ -241,8 +262,8 @@ function onResponse({data} = data){
         //             }
         //         }
         //     )
-        //     .then(response => onResponse(response.data))
-        //     .catch(error => console.error(error));
+        //     .then(response => onSuccessResponse(response.data))
+        //     .catch(error => onErrorResponse(error));
         // }catch(e){(e)=>console.log(e)}
     }
     addForms()
