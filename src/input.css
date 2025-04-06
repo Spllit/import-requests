@@ -24,7 +24,7 @@ body{
 .container{
     color: white;
 }
-button:not([name="duplicateInputData"]) {
+button:not([name="duplicateInputData"], [name="buttonReport"]) {
     background-color: #34d399;
 
 }
@@ -55,4 +55,11 @@ textarea {
 }
 svg{
     margin: 0;
+}
+pre{
+    /* overflow: auto; */
+    /* overflow-x: scroll; */
+}
+dialog::backdrop{
+    background-color: #364153;
 }

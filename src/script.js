@@ -2,6 +2,7 @@ import getForm from './getForm.js'
 import Form from './Form.js'
 import throwMessage from './throwMessage.js'
 import importDataForm from './ImportDataForm.js'
+import getReportModal from './reportModal.js'
 const url = 'https://api.calltouch.ru/lead-service/v1/api/request/create'
 
 
@@ -24,11 +25,23 @@ const onAddForms = () => {
     if(Number(formAmountInput.value) > 100) formAmountInput.value = 100 
     if(Number(formAmountInput.value) < 0) formAmountInput.value = 1
 }
-
+const onReportBtnClick = () => {
+    const container = document.querySelector('#modalContainer')
+    container.innerHTML = getReportModal()
+    const modal = document.querySelector('#reportModal')
+    const closeModal = (e) => {
+        const target = e.target
+        if(target.closest('.close_modal_btn') || target.getAttribute('id') === 'reportModal'){
+            modal.remove()
+        }
+    }
+    modal.addEventListener('mousedown', closeModal)
+}
 const onImportModalClick = () => {
     const container = document.querySelector('#modalContainer')
     container.innerHTML += importDataForm()
-    const modal = document.querySelector('#importModal') 
+    const modal = document.querySelector('#importModal')
+    
     const submitBtn = modal.querySelector('button[type="submit"]')
     const onSubmit = () =>{
         const textArea = modal.querySelector('textarea')
@@ -79,6 +92,7 @@ function onDateTyping(){
 
     dateInputs.forEach(input => {
       input.addEventListener("input", function () {
+
         // Убираем все нецифровые символы
         let digits = input.value.replace(/\D/g, "");
   
@@ -238,6 +252,11 @@ function addForms(){
 }
 
 function onSuccessResponse({data} = data){
+    // const reportButton = document.querySelector('#buttonReport')
+    // reportButton.addEventListener('click', () => {
+    //     reportButton.classList.remove('hidden')
+    //     onReportBtnClick()
+    // })
     const amoutRequests = data.requests.length
     let successfulySent = 0
     data.requests.forEach(request => {
@@ -250,21 +269,21 @@ function onErrorResponse(error){
 }
      function send(siteId, accessToken, data){
          console.log(data)
-        //  axios.defaults.headers.post['Access-Token'] = accessToken;
-        //  axios.defaults.headers.post['SiteId '] = siteId;
-        // try{
-        //     axios.post(url, 
-        //         data,
-        //         {
-        //             headers: {
-        //                 'Access-Token': accessToken,
-        //                 'SiteId': siteId
-        //             }
-        //         }
-        //     )
-        //     .then(response => onSuccessResponse(response.data))
-        //     .catch(error => onErrorResponse(error));
-        // }catch(e){(e)=>console.log(e)}
+         axios.defaults.headers.post['Access-Token'] = accessToken;
+         axios.defaults.headers.post['SiteId '] = siteId;
+        try{
+            axios.post(url, 
+                data,
+                {
+                    headers: {
+                        'Access-Token': accessToken,
+                        'SiteId': siteId
+                    }
+                }
+            )
+            .then(response => onSuccessResponse(response.data))
+            .catch(error => onErrorResponse(error));
+        }catch(e){(e)=>console.log(e)}
     }
     addForms()
 })

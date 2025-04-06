@@ -52,9 +52,39 @@ export default function getForm(id){
                                         <div class="flex justify-between ">
                                             <div class="flex flex-col space-y-4 flex-grow relative ">
                                                 <span>Контактные данные</span>
-                                                <input type="text" maxlength="100" name="fio" placeholder="ФИО" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" placeholder="Телефон" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                                <input type="text" name="email" placeholder="Почта" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="fio" name="duplicateInputData" class="absolute top-0 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" maxlength="100" name="fio" placeholder="ФИО" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    </div>
+                                                    <div class="relative">
+                                                        <button tabindex="-1" data-duplicate="phoneNumber" name="duplicateInputData" class="absolute top-0 right-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                            <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                            <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                            <line x1="32" y1="28" x2="32" y2="36"/>
+                                                            <line x1="28" y1="32" x2="36" y2="32"/>
+                                                            </svg>
+                                                        </button>
+                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" placeholder="Телефон" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                </div>
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="email" name="duplicateInputData" class="absolute top-0 right-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                            <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                            <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                            <line x1="32" y1="28" x2="32" y2="36"/>
+                                                            <line x1="28" y1="32" x2="36" y2="32"/>
+                                                            </svg>
+                                                        </button>
+                                                        <input type="text" name="email" placeholder="Почта" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                </div>
                                                 <span>Комментарий</span>
                                                 <textarea maxlength="1000" placeholder="Комментарий заявки" name="comment" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
                                             </div>
@@ -78,14 +108,7 @@ export default function getForm(id){
                                         <input name ="requestUrl" maxlength="1000" type="text" placeholder="Адрес страницы" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                         <div class="flex flex-col space-y-4 flex-grow relative">
                                             <span>Источники</span>
-                                            <button tabindex="-1" data-duplicate="sessionId" name="duplicateInputData" class="absolute top-10 right-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
-                                                <rect x="12" y="12" width="32" height="32" rx="8"/>
-                                                <rect x="20" y="20" width="32" height="32" rx="8"/>
-                                                <line x1="32" y1="28" x2="32" y2="36"/>
-                                                <line x1="28" y1="32" x2="36" y2="32"/>
-                                                </svg>
-                                            </button>
+                                            
                                                 <input type="number" placeholder="sessionId" maxlength="100" name="sessionId" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
     
                                         
