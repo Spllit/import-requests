@@ -196,7 +196,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="tags" placeholder="Теги" class=" w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="tags" placeholder="Теги | введите теги через запятую" class=" w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 
                                                 </div>
                                                 </div>
