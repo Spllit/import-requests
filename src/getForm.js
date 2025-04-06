@@ -1,0 +1,189 @@
+export default function getForm(id){
+    return(
+        `<form class="p-6 rounded-lg shadow-lg my-4" data-form-id="${id}">
+                        <div class="flex flex-col justify-center">
+                            <div class="flex justify-between">
+                                <div class="flex-1 px-3 items-center justify-items-stretch items-start">
+                                    <div class="flex flex-col justify-around space-y-4">
+                                        <div class="flex flex-grow   space-y-4 ">
+                                            <!-- <div class="flex flex-col flex-grow   space-y-4"> -->
+                                               <div class="flex relative flex-col mr-7 flex-grow space-y-4">
+                                                   <span>Дата *</span>
+                                                <button tabindex="-1" data-duplicate="requestDate" name="duplicateInputData" class="absolute top-10 right-0 color-gray-300">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                    <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                    <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                    <line x1="32" y1="28" x2="32" y2="36"/>
+                                                    <line x1="28" y1="32" x2="36" y2="32"/>
+                                                    </svg>
+                                                </button>
+                                                   <input type="text" required  name="requestDate" placeholder="dd-mm-yyyy hh:mm:ss" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                               </div>
+                                               <div class="flex flex-col flex-grow space-y-4 relative">
+                                                   <span>Номер заявки *</span>
+                                                    <button tabindex="-1" data-duplicate="requestNumber" name="duplicateInputData" class="absolute top-10 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                   <input type="text" required  name="requestNumber" placeholder="Номер заявки" maxlength="100" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                               </div>
+                                            <!-- </div> -->
+                                        </div>
+                                        <div class="flex justify-between ">
+                                            <div class="flex flex-col flex-grow space-y-4 relative">
+                                                <span>Название заявки</span>
+                                                <button tabindex="-1" data-duplicate="subject" name="duplicateInputData" class="absolute top-10 right-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                    <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                    <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                    <line x1="32" y1="28" x2="32" y2="36"/>
+                                                    <line x1="28" y1="32" x2="36" y2="32"/>
+                                                    </svg>
+                                                </button>
+                                                <input type="text" name="subject" placeholder="Название заявки" maxlength="100" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                            </div>
+                                            
+
+                                        </div>
+                                        <div class="flex justify-between ">
+                                            <div class="flex flex-col space-y-4 flex-grow relative ">
+                                                <span>Контактные данные</span>
+                                                <input type="text" maxlength="100" name="fio" placeholder="ФИО" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" placeholder="Телефон" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="text" name="email" placeholder="Почта" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <span>Комментарий</span>
+                                                <textarea maxlength="1000" placeholder="Комментарий заявки" name="comment" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
+                                            </div>
+                                            
+                                        </div>
+                                        <!-- <input type="text" name="comment" placeholder="Комментарий" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"> -->
+                                    </div>
+                                </div>
+            
+                                <div class="flex-1 px-3 items-center items-start">
+                                    <div class="flex flex-col flex-grow space-y-4 relative">
+                                        <span>Адрес страницы</span>
+                                        <button tabindex="-1" data-duplicate="requestUrl" name="duplicateInputData" class="absolute top-10 right-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                            <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                            <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                            <line x1="32" y1="28" x2="32" y2="36"/>
+                                            <line x1="28" y1="32" x2="36" y2="32"/>
+                                            </svg>
+                                        </button>
+                                        <input name ="requestUrl" maxlength="1000" type="text" placeholder="Адрес страницы" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        <div class="flex flex-col space-y-4 flex-grow relative">
+                                            <span>Источники</span>
+                                            <button tabindex="-1" data-duplicate="sessionId" name="duplicateInputData" class="absolute top-10 right-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                <line x1="32" y1="28" x2="32" y2="36"/>
+                                                <line x1="28" y1="32" x2="36" y2="32"/>
+                                                </svg>
+                                            </button>
+                                                <input type="number" placeholder="sessionId" maxlength="100" name="sessionId" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+    
+                                        
+                                            </div>
+                                                <div class="flex flex-col  sources flex-grow">
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="source" name="duplicateInputData" class="absolute top-3 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" name="source" placeholder="Source" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    </div>
+                                                    <div class="relative">
+                                                        <button tabindex="-1" data-duplicate="medium" name="duplicateInputData" class="absolute top-3 right-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                            <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                            <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                            <line x1="32" y1="28" x2="32" y2="36"/>
+                                                            <line x1="28" y1="32" x2="36" y2="32"/>
+                                                            </svg>
+                                                        </button>
+                                                    <input type="text" name="medium" placeholder="Medium" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                </div>
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="campaign" name="duplicateInputData" class="absolute top-3 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" name="campaign" placeholder="Campaign" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                </div>
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="content" name="duplicateInputData" class="absolute top-3 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" name="content" placeholder="Content" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                            
+                                                </div>
+                                                    
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="term" name="duplicateInputData" class="absolute top-3 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                <input type="text" name="term" placeholder="Term" class="p-3 w-full border-2 my-3 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                
+                                                </div>
+                                                </div>
+                                                <div class="flex flex-col justify-around space-y-4">
+                                                    <span>Менеджер | Теги</span>
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="manager" name="duplicateInputData" class="absolute top-0 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" name="manager" maxlength="50" placeholder="Менеджер" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                
+                                                </div>
+                                                <div class="relative">
+                                                    <button tabindex="-1" data-duplicate="tags" name="duplicateInputData" class="absolute top-0 right-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+                                                        <rect x="12" y="12" width="32" height="32" rx="8"/>
+                                                        <rect x="20" y="20" width="32" height="32" rx="8"/>
+                                                        <line x1="32" y1="28" x2="32" y2="36"/>
+                                                        <line x1="28" y1="32" x2="36" y2="32"/>
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" name="tags" placeholder="Теги" class=" w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                
+                                                </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 px-3 items-center py-8 items-start" id="customFields">
+                                    Пользовательские поля | пока не поддерживается:(</div>
+                                </div>
+                            </div>
+                        </div>
+                    <form>`
+    )
+}

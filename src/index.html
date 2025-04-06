@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Импорт заявок </title>
+</head>
+<body>
+    
+    <div class="container mx-auto min-w-[85vw] relative mt-10">
+
+        <div role="list" class="divide-y divide-gray-100">
+            <div class="border-white text-white" >
+                <div class="flex flex-1 justify-between items-start space-x-5">
+                    <div >
+                        <input id="input" required name="siteId" type="number" placeholder="Site id" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <input id="input" required name ="access-token" type="text" placeholder="Access-Token" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <button class=" button_send p-3 rounded-lg" id="send">Отправить</button>
+                    </div>
+
+                        <div class="flex flex-col p-3 w-1/4 rounded-lg" id="messageContainer" >
+                        </div>
+                    <div>
+                        <input id="input" name="formAmount" type="number" placeholder="Количество форм" class="w-50 mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <button class="mx-2 button_send p-3 rounded-lg" id="addForms">Создать формы</button>
+                        <button class="mx-2 button_send p-3 rounded-lg" id="importDataForm">Импортировать данные</button>
+                    </div>
+                </div>
+                <div id="container">
+                    
+                </div>
+                <div id="modalContainer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

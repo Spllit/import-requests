@@ -1,0 +1,58 @@
+@import "tailwindcss";
+body{
+    background-color: #415a77;
+}
+/* .container{
+    background-color: ;
+} */
+.arrow {
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    /* margin-right: 60px; */
+} 
+.arrow-bottom {
+    transform: rotate(135deg); }
+.line{
+    width: 100%;
+    border-top: 3px solid #32a1ce;
+}
+.hide{
+    display: none;
+}
+.container{
+    color: white;
+}
+button:not([name="duplicateInputData"]) {
+    background-color: #34d399;
+
+}
+
+.dropDownArrow{
+    cursor: pointer;
+}
+form{
+    background-color: #778da9;
+}
+button{
+    cursor: pointer;
+}
+textarea { 
+    resize: none; 
+    max-height: 250px;
+    min-height: 250px;
+}
+.error_maeesage{
+    background-color: #f15958;
+}
+.success_sent{
+    background-color: #34d399;
+}
+.import_form{
+    background-color: #4f5d70;
+    position: absolute;
+}
+svg{
+    margin: 0;
+}
