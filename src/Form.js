@@ -20,6 +20,26 @@ content = ''
 term = ''
 manager = ''
 errorMessage = ''
+customFields = []
+
+get customFiledsAmout(){
+    if(this.customFields.length < 20){
+        if(this.customFields.length === 0){
+            return 0
+        }
+        else{
+            return this.customFields.length
+        }
+    }
+    return false
+}
+addCustomFiled(){
+    if(this.customFields.length < 20){
+        this.customFields.push({field: '', value: ''})
+        return this.customFields.length
+    }
+    return false
+}
 verifyForm(){
 
     if(!!(this.requestDate && this.requestNumber) && !!(this.fio || this.phoneNumber || this.email || this.comment)){
@@ -70,10 +90,14 @@ getFormData(){
         if(this.term) customSources.term = this.term
         data.customSources = customSources
     }
-
+    const getCustomFields = () => {
+        const fieldsArr = this.customFields.filter(field => {if(field.field && field.value) return field})
+            if(fieldsArr.length) data.customFields = fieldsArr
+    }
     getComment()
     getTags()
     getCustomSources()
+    getCustomFields()
     return data
 }
 }

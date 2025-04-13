@@ -1,6 +1,6 @@
 export default function getForm(id){
     return(
-        `<form class="p-6 rounded-lg shadow-lg my-4" data-form-id="${id}">
+        `<form class="relative z-1 p-6 rounded-lg shadow-lg mb-4" data-form-id="${id}">
                         <div class="flex flex-col justify-center">
                             <div class="flex justify-between">
                                 <div class="flex-1 px-3 items-center justify-items-stretch items-start">
@@ -8,7 +8,7 @@ export default function getForm(id){
                                         <div class="flex flex-grow   space-y-4 ">
                                             <!-- <div class="flex flex-col flex-grow   space-y-4"> -->
                                                <div class="flex relative flex-col mr-7 flex-grow space-y-4">
-                                                   <span>Дата *</span>
+                                                   <span>Дата ( dd-mm-yyyy hh:mm:ss ) *</span>
                                                 <button data-tooltip="Скопировать значение поля  в остальные формы" tabindex="-1" data-duplicate="requestDate" name="duplicateInputData" class="absolute top-10 right-0 color-gray-300">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
                                                     <rect x="12" y="12" width="32" height="32" rx="8"/>
@@ -202,10 +202,25 @@ export default function getForm(id){
                                                 </div>
                                         </div>
                                     </div>
-                                    <div class="flex-1 px-3 items-center py-8 items-start" id="customFields">
-                                    Пользовательские поля | пока не поддерживается:(</div>
+                                    <div class="flex-1 px-3 items-center items-start" name="customFields">
+                                    <div class="flex flex-col flex-grow space-y-4 relative">
+                                    <span>Пользовательские поля</span> 
+                                        <div class="relative h-162 overflow-y-auto" name="customFieldsContainer">
+                                            
+                                           
+                                        </div>
+                                        <div class="button_area">
+                                                <button name="customFieldBtn" tabindex="-1" class="w-full text-gray-700 bg-white button_send p-3 rounded-lg">
+                                                    <strong>Добавить поле</strong   >
+                                                </button>
+                                            </div>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="-z-2 w-20 h-12 absolute top-0 -left-9 rounded-lg pl-3 pt-3 form_number">
+                                    <strong>${id+1}</strong>
+                                </div>
                         </div>
                     <form>`
     )

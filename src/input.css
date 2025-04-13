@@ -1,5 +1,5 @@
 @import "tailwindcss";
-body{
+body, nav{
     background-color: #415a77;
 }
 /* .container{
@@ -24,7 +24,7 @@ body{
 .container{
     color: white;
 }
-button:not([name="duplicateInputData"], [name="buttonReport"]) {
+button:not([name="duplicateInputData"], [name="buttonReport"], [name="customFieldBtn"]) {
     background-color: #34d399;
 
 }
@@ -32,7 +32,7 @@ button:not([name="duplicateInputData"], [name="buttonReport"]) {
 .dropDownArrow{
     cursor: pointer;
 }
-form{
+form, .form_number{
     background-color: #778da9;
 }
 button{
@@ -48,6 +48,9 @@ textarea {
 }
 .success_sent{
     background-color: #34d399;
+}
+.warning_message{
+    background-color: #f1c328;
 }
 .import_form{
     background-color: #4f5d70;

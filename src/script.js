@@ -3,21 +3,26 @@ import Form from './Form.js'
 import throwMessage from './throwMessage.js'
 import importDataForm from './ImportDataForm.js'
 import getReportModal from './reportModal.js'
+import getCustomField from './getCustomField.js'
 const url = 'https://api.calltouch.ru/lead-service/v1/api/request/create'
 
 
 document.addEventListener('DOMContentLoaded', function(){
-let formAmount = 1
+// let prevFormAmout = 0
+// let formAmount = 1
 const container = document.querySelector('#container')
 const siteIdInput = document.querySelector('input[name="siteId"]')
 const accessTokenInput = document.querySelector('input[name="access-token"]')
 const formAmountInput = document.querySelector('input[name="formAmount"]')
-const sendBtn = document.querySelector('#send')
-const addFormsBtn = document.querySelector('#addForms')
-const importDataBtn = document.querySelector('#importDataForm')
+// const sendBtn = document.querySelector('#send')
+// const addFormsBtn = document.querySelector('#addForms')
+// const importDataBtn = document.querySelector('#importDataForm')
+
 let siteId = undefined
 let accessToken = undefined
 const formInstances = []
+document.querySelector("#customFields > div > div.button_area > button")
+
 let valid = false;
 
 const onAddForms = () => {
@@ -79,6 +84,9 @@ const duplicateInuteData = () => {
             const sameInputs = container.querySelectorAll(`input[name="${inputType}"]`)
             sameInputs.forEach(input => {
                 input.value = closestInput.value
+            })
+            formInstances.forEach(instance => {
+                instance[inputType] = closestInput.value
             })
         }
     }
@@ -147,6 +155,9 @@ function addMessage(messageType, message){
     if(messageType === 'error'){
         messageContainer.classList.add('error_maeesage')
     }
+    else if(messageType === 'warning'){
+        messageContainer.classList.add('warning_message')
+    }
     else if(messageType === 'success'){
         messageContainer.classList.add('success_sent')
     }
@@ -157,6 +168,7 @@ function removeMessage(){
     if(!messageContainer.classList.contains('hide')){
         messageContainer.classList.remove('error_maeesage')
         messageContainer.classList.remove('success_sent')
+        messageContainer.classList.remove('warning_message')
         messageContainer.classList.add('hide')
     }
     messageContainer.innerHTML = ''
@@ -213,62 +225,146 @@ function verifyData(){
     }
 
 
-function collectFormData(){
-    const forms = document.getElementsByTagName('form');
-    for (const form of forms) {
-        const idForm  = form.dataset.formId
-        const data = new FormData(form)
-        for (const formData of data) {
-            formInstances[idForm][formData[0]] = formData[1]
+// function collectFormData(){
+//     const forms = document.getElementsByTagName('form');
+//     for (const form of forms) {
+//         const idForm  = form.dataset.formId
+//         const data = new FormData(form)
+//         for (const formData of data) {
+//             formInstances[idForm][formData[0]] = formData[1]
 
-        }
+//         }
 
+//     }
+//     console.log(forms)
+//     siteId = siteIdInput.value
+//     accessToken = accessTokenInput.value
+//     verifyData()
+
+// }
+function addCustomFiled(form){
+    const formId = form.dataset.formId 
+    const currentFormContainer = document.querySelector(`form[data-form-id="${formId}"] [name="customFieldsContainer"]`)
+    const customFiledsAmout = formInstances[formId].customFiledsAmout
+    if(customFiledsAmout !== false){
+        formInstances[formId].addCustomFiled()
+        const newField = document.createElement('div')
+        newField.innerHTML = getCustomField({formId, 'customFieldId':customFiledsAmout})
+        currentFormContainer.appendChild(newField)
     }
-    siteId = siteIdInput.value
-    accessToken = accessTokenInput.value
-    verifyData()
-
+    // if(formInstances[formId].currentFormAmount){
+    //     formInstances[formId].currentFormAmount++
+    //     currentFormContainer.
+    // }
+    
 }
-sendBtn.addEventListener('click', collectFormData)
-addFormsBtn.addEventListener('click', addForms)
-formAmountInput.addEventListener('input', onAddForms)
-importDataBtn.addEventListener('click', onImportModalClick)
 
-function drawForms(){
-    formInstances.length = 0;
-    container.innerHTML = ''
-    for(let i = 0; i < formAmount; i++){
-        formInstances.push(new Form(i))
-        container.innerHTML += getForm(i)
+// function onAddCustomFiledBtnClick(){
+//     const customFieldBtn = document.querySelectorAll('button[name="customFieldBtn"]')
+//     customFieldBtn.forEach(btn => {
+//         btn.addEventListener('click', e => {
+//             const {target} = e
+//             e.preventDefault() 
+//             const closestForm = target.closest('form')
+//             addCustomFiled(closestForm)
+            
+//         })
+//     })
+// }
+
+// sendBtn.addEventListener('click', collectFormData)
+// addFormsBtn.addEventListener('click', addForms)
+// formAmountInput.addEventListener('input', onAddForms)
+// importDataBtn.addEventListener('click', onImportModalClick)
+document.addEventListener('input', (e)=>{
+    const {target} = e
+    if(target.getAttribute('name') == 'formAmount') onAddForms()
+    else if(target.getAttribute('name') === 'siteId') siteId = target.value
+    else if(target.getAttribute('name') === 'access-token') accessToken = target.value
+    else if(target.hasAttribute('name') && target.closest('form') && target.getAttribute('name') in formInstances[target.closest('form').dataset.formId]){
+        formInstances[target.closest('form').dataset.formId][target.getAttribute('name')] = target.value
 
     }
+    else if(target.getAttribute('name') === 'customFieldApi' || target.getAttribute('name') === 'customFieldValue'){
+        const formId = target.closest('div[name="customField"]').dataset.customfieldFormid
+        const fieldId = target.closest('div[name="customField"]').dataset.customFieldId
+        if(target.getAttribute('name') === 'customFieldApi'){
+            formInstances[formId].customFields[fieldId].field = target.value
+        }
+        else if(target.getAttribute('name') === 'customFieldValue'){
+            formInstances[formId].customFields[fieldId].value = target.value
+        }
+    }
+})
+document.addEventListener('click', (e) => {
+    const {target} = e
+    if(target.hasAttribute('id') && target.getAttribute('id') === 'send'){
+        verifyData()
+    }
+    else if(target.hasAttribute('id') && target.getAttribute('id') === 'addForms'){
+        addForms()
+    }
+    else if(target.hasAttribute('id') && target.getAttribute('id') === 'importDataForm'){
+        onImportModalClick()
+    }
+    else if((target.hasAttribute('name') && target.getAttribute('name') === 'customFieldBtn') || (target.closest('button') && target.closest('button').hasAttribute('name') && target.closest('button').getAttribute('name') === 'customFieldBtn')){
+        e.preventDefault()
+        addCustomFiled(target.closest('form'))
+    }
+})
+
+function drawForms(amount){
+    const currentFormAmount = formInstances.length
+    if(amount === currentFormAmount){
+        return
+    }
+    else if(amount > currentFormAmount){
+        for(let i = currentFormAmount; i < amount; i++){
+            formInstances.push(new Form(i))
+            const formContainer = document.createElement('div')
+            formContainer.innerHTML = getForm(i)
+            container.appendChild(formContainer)
+            addCustomFiled(formContainer.querySelector('form'))
+        }               
+    }
+    else if(amount < currentFormAmount){
+        for(let i = 0; i < currentFormAmount - amount; i++){
+            const removedItem = formInstances.pop()
+            const itemToRemove = container.querySelector(`form[data-form-id="${removedItem.formId}"]`).closest('div')
+            container.removeChild(itemToRemove)
+
+    
+        }
+    }
+    // onAddCustomFiledBtnClick()
 }
 function addForms(){
-    formAmount = Number(formAmountInput.value) || 1
-    drawForms()
+    const amount = formAmountInput.value || 1
+    drawForms(amount)
     onDateTyping()
     duplicateInuteData()
-
 }
 
 function onSuccessResponse({data} = data){
-    // const reportButton = document.querySelector('#buttonReport')
-    // reportButton.addEventListener('click', () => {
-    //     reportButton.classList.remove('hidden')
-    //     onReportBtnClick()
-    // })
+
     const amoutRequests = data.requests.length
     let successfulySent = 0
     data.requests.forEach(request => {
         if(request.imported) successfulySent++
     })
-    addMessage('success', throwMessage(`Заявка(и) успешно отправлены! ${successfulySent} из ${amoutRequests}`))
+    if(successfulySent < amoutRequests){
+        addMessage('warining', throwMessage(`Заявка(и) успешно отправлены! ${successfulySent} из ${amoutRequests}`))
+    }
+    else{
+        addMessage('success', throwMessage(`Заявка(и) успешно отправлены! ${successfulySent} из ${amoutRequests}`))
+    }
 }
 function onErrorResponse(error){
     addMessage('error', throwMessage(`Заявка(и) не были отправлены! Статус: ${error.status}`))
 }
      function send(siteId, accessToken, data){
-         console.log(data)
+        //  console.log(data)
+        //  console.log(formInstances)
          axios.defaults.headers.post['Access-Token'] = accessToken;
          axios.defaults.headers.post['SiteId '] = siteId;
         try{

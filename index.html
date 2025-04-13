@@ -13,16 +13,16 @@
 
         <div role="list" class="divide-y divide-gray-100">
             <div class="border-white text-white" >
-                <div class="flex flex-1 justify-between items-start space-x-5">
+                <nav class="z-3 mb-4 flex flex-1 justify-between items-start space-x-5">
                     <div >
-                        <input id="input" required name="siteId" type="number" placeholder="Site id" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                        <input id="input" required name ="access-token" type="text" placeholder="Access-Token" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <input  required name="siteId" type="number" placeholder="Site id" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <input  required name ="access-token" type="text" placeholder="Access-Token" class="mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                         <button class=" button_send p-3 rounded-lg" id="send">Отправить</button>
                     </div>
 
                         <div class="flex flex-col p-3 w-1/4 rounded-lg" id="messageContainer" >
                         </div>
-                    <div class="flex">
+                    <div class="flex justify-between">
                         <button id="buttonReport" name="buttonReport" class="hidden mr-2 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 28 28" fill="none" stroke="#D1D5DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <!-- Контур документа с загнутым уголком -->
@@ -35,13 +35,12 @@
                                 <line x1="9" y1="21" x2="16" y2="21"/>
                               </svg>
                         </button>
-                        <input id="input" name="formAmount" type="number" placeholder="Количество форм" class="w-50 mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                        <button class="mx-2 button_send p-3 rounded-lg" id="addForms">Создать формы</button>
-                        <button class="mx-2 button_send p-3 rounded-lg" id="importDataForm">Импортировать данные</button>
+                        <input  name="formAmount" type="number" placeholder="Количество форм" class="w-50 mr-2 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                        <button class="mr-2 button_send p-3 rounded-lg" id="addForms">Создать формы</button>
+                        <button class=" button_send p-3 rounded-lg" id="importDataForm">Импортировать данные</button>
                     </div>
-                </div>
+                </nav>
                     <div id="container">
-                        
                     </div>
                     <div id="modalContainer">
 
