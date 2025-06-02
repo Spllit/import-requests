@@ -1,14 +1,14 @@
 export default function getForm(id){
     return(
-        `<form class="relative z-1 p-6 rounded-lg shadow-lg mb-4" data-form-id="${id}">
+        `<form class="relative z-1 p-6 rounded-lg shadow-lg mb-12" data-form-id="${id}">
                         <div class="flex flex-col justify-center">
                             <div class="flex justify-between">
-                                <div class="flex-1 px-3 items-center justify-items-stretch items-start">
-                                    <div class="flex flex-col justify-around space-y-4">
-                                        <div class="flex flex-grow   space-y-4 ">
+                                <div class="flex-1 px-3 items-center  items-start">
+                                    <div class="flex flex-col flex-grow justify-around space-y-4">
+                                        <div class="flex flex-grow  flex-nowrap lg:flex-wrap md:flex-wrap sm:flex-wrap space-y-4 ">
                                             <!-- <div class="flex flex-col flex-grow   space-y-4"> -->
-                                               <div class="flex relative flex-col mr-7 flex-grow space-y-4">
-                                                   <span>Дата ( dd-mm-yyyy hh:mm:ss ) *</span>
+                                               <div class="flex relative flex-col mr-7 w-full lg:w-1/3 flex-grow space-y-4">
+                                                   <span>Дата *</span>
                                                 <button data-tooltip="Скопировать значение поля  в остальные формы" tabindex="-1" data-duplicate="requestDate" name="duplicateInputData" class="absolute top-10 right-0 color-gray-300">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
                                                     <rect x="12" y="12" width="32" height="32" rx="8"/>
@@ -17,7 +17,7 @@ export default function getForm(id){
                                                     <line x1="28" y1="32" x2="36" y2="32"/>
                                                     </svg>
                                                 </button>
-                                                   <input type="text" required  name="requestDate" placeholder="dd-mm-yyyy hh:mm:ss" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                   <input type="text" required  name="requestDate" placeholder="dd-mm-yyyy hh:mm:ss" class="p-3  border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                </div>
                                                <div class="flex flex-col flex-grow space-y-4 relative">
                                                    <span>Номер заявки *</span>
@@ -94,9 +94,10 @@ export default function getForm(id){
                                     </div>
                                 </div>
             
-                                <div class="flex-1 px-3 items-center items-start">
+                                <div class="flex-1 px-3 items-center justify-around items-start">
+                                <div class="flex flex-col flex-grow  space-y-4 relative">
                                     <div class="flex flex-col flex-grow space-y-4 relative">
-                                        <span>Адрес страницы</span>
+                                    <span>Адрес страницы</span>
                                         <button tabindex="-1" data-duplicate="requestUrl" name="duplicateInputData" class="absolute top-10 right-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" stroke="#D1D5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
                                             <rect x="12" y="12" width="32" height="32" rx="8"/>
@@ -106,6 +107,7 @@ export default function getForm(id){
                                             </svg>
                                         </button>
                                         <input name ="requestUrl" maxlength="1000" type="text" placeholder="Адрес страницы" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        </div>
                                         <div class="flex flex-col space-y-4 flex-grow relative">
                                             <span>Источники</span>
                                             
@@ -218,7 +220,7 @@ export default function getForm(id){
                                     </div>
                                 </div>
                             </div>
-                            <div class="-z-2 w-20 h-12 absolute top-0 -left-9 rounded-lg pl-3 pt-3 form_number">
+                            <div class="-z-2 w-50 h-12 absolute -top-9 left-0 rounded-lg pl-3 pt-3 form_number">
                                     <strong>${id+1}</strong>
                                 </div>
                         </div>

@@ -9,7 +9,7 @@
 </head>
 <body>
     
-    <div class="container mx-auto min-w-[85vw] relative mt-10">
+    <!-- <div class="container mx-auto min-w-[85vw] relative mt-10">
 
         <div role="list" class="divide-y divide-gray-100">
             <div class="border-white text-white" >
@@ -26,11 +26,11 @@
                         <button id="buttonReport" name="buttonReport" class="hidden mr-2 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 28 28" fill="none" stroke="#D1D5DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <!-- Контур документа с загнутым уголком -->
-                                <path d="M5 4a2 2 0 0 1 2-2h10l6 6v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/>
-                                <polyline points="15 2 15 8 21 8"/>
+                                <!-- <path d="M5 4a2 2 0 0 1 2-2h10l6 6v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/>
+                                <polyline points="15 2 15 8 21 8"/> -->
                                 
                                 <!-- Три горизонтальные линии -->
-                                <line x1="9" y1="13" x2="19" y2="13"/>
+                                <!-- <line x1="9" y1="13" x2="19" y2="13"/>
                                 <line x1="9" y1="17" x2="19" y2="17"/>
                                 <line x1="9" y1="21" x2="16" y2="21"/>
                               </svg>
@@ -47,7 +47,61 @@
                     </div>
             </div>
         </div>
-    </div>
+    </div> --> 
+    <div class="mx-auto sm:px-0  mt-10 w-full max-w-[95vw]">
+
+        <div role="list" class="divide-y divide-gray-200">
+          <div class="text-white">
+      
+            <nav class="flex flex-col lg:flex-row justify-between gap-6 mb-12">
+      
+              <!-- Левая часть: SiteId и Access-Token -->
+              <div class="flex flex-wrap gap-4">
+                <input required name="siteId" type="number" placeholder="Site id"
+                  class="w-full sm:w-auto p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <input required name="access-token" type="text" placeholder="Access-Token"
+                  class="w-full sm:w-auto p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <button class="button_send p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition" id="send">
+                  Отправить
+                </button>
+              </div>
+      
+              <!-- Центр: сообщения -->
+              <div class="w-full lg:w-1/4  text-black rounded-lg p-4" id="messageContainer">
+                <!-- Сообщения появятся здесь -->
+              </div>
+      
+              <!-- Правая часть: кнопки и поля -->
+              <div class="flex flex-wrap items-center gap-4">
+                <button id="buttonReport" name="buttonReport" class="hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 28 28" fill="none"
+                    stroke="#D1D5DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 4a2 2 0 0 1 2-2h10l6 6v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z" />
+                    <polyline points="15 2 15 8 21 8" />
+                    <line x1="9" y1="13" x2="19" y2="13" />
+                    <line x1="9" y1="17" x2="19" y2="17" />
+                    <line x1="9" y1="21" x2="16" y2="21" />
+                  </svg>
+                </button>
+      
+                <input name="formAmount" type="number" placeholder="Количество форм"
+                  class="w-full sm:w-auto p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+      
+                <button class="button_send p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition"
+                  id="addForms">Создать формы</button>
+      
+                <button class="button_send p-3 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition"
+                  id="importDataForm">Импортировать данные</button>
+              </div>
+      
+            </nav>
+      
+            <div id="container" class="w-full"></div>
+            <div id="modalContainer" class="w-full"></div>
+      
+          </div>
+        </div>
+      </div>
   <script type="module" src="src/script.js"></script>
 </body>
 </html>
