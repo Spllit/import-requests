@@ -2,7 +2,7 @@ export default class Form{
     constructor(formId){
         this.formId = formId
     }
-valid = false
+
 requestUrl = '' 
 requestDate = '' 
 requestNumber = '' 
@@ -19,7 +19,6 @@ campaign = ''
 content = '' 
 term = ''
 manager = ''
-errorMessage = ''
 customFields = []
 
 get customFiledsAmout(){
@@ -40,17 +39,22 @@ addCustomFiled(){
     }
     return false
 }
+// с проверкой контактных данных
+// verifyForm(){
+//     if(!!(this.requestDate && this.requestNumber) && !!(this.fio || this.phoneNumber || this.email || this.comment)) return true
+//     return false
+// }
 verifyForm(){
-
-    if(!!(this.requestDate && this.requestNumber) && !!(this.fio || this.phoneNumber || this.email || this.comment)){
-        this.valid = true;
-        return this.valid
+    if(!!(this.requestDate && this.requestNumber)) return true
+    return false
+}
+checkSources(){
+    if(this.source || this.medium || this.campaign || this.content || this.term){
+        if(!(this.source && this.medium && this.campaign)){
+            return false
+        }
     }
-    else{
-        this.valid = false
-        this.errorMessage = 'Не заполнены обязательные поля'
-        return this.valid
-    }
+    return true
 }
 
 getFormData(){
@@ -59,7 +63,7 @@ getFormData(){
         'requestDate': this.requestDate,
     }
     if(this.subject)data.subject = this.subject
-    if(this.requestUrl) data.requestNumber = this.requestUrl
+    if(this.requestUrl) data.requestUrl = this.requestUrl
     if(this.sessionId) data.sessionId = this.sessionId
     if(this.phoneNumber) data.phoneNumber = this.phoneNumber
     if(this.email) data.email = this.email

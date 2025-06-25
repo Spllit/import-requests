@@ -24,7 +24,7 @@ body, nav{
 .container{
     color: white;
 }
-button:not([name="duplicateInputData"], [name="buttonReport"], [name="customFieldBtn"]) {
+button:not([name="duplicateInputData"], [name="buttonReport"], [name="customFieldBtn"], [name="modalConfirm"], [name="modalConfirmCancel"]) {
     background-color: #34d399;
 
 }
@@ -43,7 +43,7 @@ textarea {
     max-height: 250px;
     min-height: 250px;
 }
-.error_maeesage{
+/* .error_maeesage{
     background-color: #f15958;
 }
 .success_sent{
@@ -51,7 +51,7 @@ textarea {
 }
 .warning_message{
     background-color: #f1c328;
-}
+} */
 .import_form{
     background-color: #4f5d70;
     position: absolute;

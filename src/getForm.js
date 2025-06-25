@@ -17,7 +17,7 @@ export default function getForm(id){
                                                     <line x1="28" y1="32" x2="36" y2="32"/>
                                                     </svg>
                                                 </button>
-                                                   <input type="text" required  name="requestDate" placeholder="dd-mm-yyyy hh:mm:ss" class="p-3  border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                   <input type="text" required  name="requestDate" placeholder="dd-mm-yyyy hh:mm:ss" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                </div>
                                                <div class="flex flex-col flex-grow space-y-4 relative">
                                                    <span>Номер заявки *</span>
@@ -29,7 +29,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                   <input type="text" required  name="requestNumber" placeholder="Номер заявки" maxlength="100" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                   <input type="text" required  name="requestNumber" placeholder="Номер заявки" maxlength="100" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                </div>
                                             <!-- </div> -->
                                         </div>
@@ -44,7 +44,7 @@ export default function getForm(id){
                                                     <line x1="28" y1="32" x2="36" y2="32"/>
                                                     </svg>
                                                 </button>
-                                                <input type="text" name="subject" placeholder="Название заявки" maxlength="100" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="text" name="subject" placeholder="Название заявки" maxlength="100" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                             </div>
                                             
 
@@ -61,7 +61,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" maxlength="100" name="fio" placeholder="ФИО" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" maxlength="100" name="fio" placeholder="ФИО" class="w-full p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                     </div>
                                                     <div class="relative">
                                                         <button tabindex="-1" data-duplicate="phoneNumber" name="duplicateInputData" class="absolute top-0 right-0">
@@ -72,7 +72,7 @@ export default function getForm(id){
                                                             <line x1="28" y1="32" x2="36" y2="32"/>
                                                             </svg>
                                                         </button>
-                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" placeholder="Телефон" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" placeholder="Телефон" class="w-full p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 </div>
                                                 <div class="relative">
                                                     <button tabindex="-1" data-duplicate="email" name="duplicateInputData" class="absolute top-0 right-0">
@@ -83,14 +83,14 @@ export default function getForm(id){
                                                             <line x1="28" y1="32" x2="36" y2="32"/>
                                                             </svg>
                                                         </button>
-                                                        <input type="text" name="email" placeholder="Почта" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                        <input type="text" name="email" placeholder="Почта" class="w-full p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 </div>
                                                 <span>Комментарий</span>
                                                 <textarea maxlength="1000" placeholder="Комментарий заявки" name="comment" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
                                             </div>
                                             
                                         </div>
-                                        <!-- <input type="text" name="comment" placeholder="Комментарий" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"> -->
+                                        <!-- <input type="text" name="comment" placeholder="Комментарий" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"> -->
                                     </div>
                                 </div>
             
@@ -106,12 +106,12 @@ export default function getForm(id){
                                             <line x1="28" y1="32" x2="36" y2="32"/>
                                             </svg>
                                         </button>
-                                        <input name ="requestUrl" maxlength="1000" type="text" placeholder="Адрес страницы" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        <input name ="requestUrl" maxlength="1000" type="text" placeholder="Адрес страницы" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                         </div>
                                         <div class="flex flex-col space-y-4 flex-grow relative">
                                             <span>Источники</span>
                                             
-                                                <input type="number" placeholder="sessionId" maxlength="100" name="sessionId" class="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="number" placeholder="sessionId" maxlength="100" name="sessionId" class="p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
     
                                         
                                             </div>
@@ -125,7 +125,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="source" placeholder="Source" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="source" placeholder="Source" class="p-3 w-full my-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                     </div>
                                                     <div class="relative">
                                                         <button tabindex="-1" data-duplicate="medium" name="duplicateInputData" class="absolute top-3 right-0">
@@ -136,7 +136,7 @@ export default function getForm(id){
                                                             <line x1="28" y1="32" x2="36" y2="32"/>
                                                             </svg>
                                                         </button>
-                                                    <input type="text" name="medium" placeholder="Medium" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="medium" placeholder="Medium" class="p-3 pr-18 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 </div>
                                                 <div class="relative">
                                                     <button tabindex="-1" data-duplicate="campaign" name="duplicateInputData" class="absolute top-3 right-0">
@@ -147,7 +147,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="campaign" placeholder="Campaign" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="campaign" placeholder="Campaign" class="p-3 pr-18 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 </div>
                                                 <div class="relative">
                                                     <button tabindex="-1" data-duplicate="content" name="duplicateInputData" class="absolute top-3 right-0">
@@ -158,7 +158,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="content" placeholder="Content" class="p-3 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="content" placeholder="Content" class="p-3 pr-18 w-full my-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                             
                                                 </div>
                                                     
@@ -171,7 +171,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                <input type="text" name="term" placeholder="Term" class="p-3 w-full border-2 my-3 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                <input type="text" name="term" placeholder="Term" class="p-3 pr-18 w-full border-2 my-3 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 
                                                 </div>
                                                 </div>
@@ -186,7 +186,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="manager" maxlength="50" placeholder="Менеджер" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="manager" maxlength="50" placeholder="Менеджер" class="w-full p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 
                                                 </div>
                                                 <div class="relative">
@@ -198,7 +198,7 @@ export default function getForm(id){
                                                         <line x1="28" y1="32" x2="36" y2="32"/>
                                                         </svg>
                                                     </button>
-                                                    <input type="text" name="tags" placeholder="Теги | введите теги через запятую" class=" w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                                    <input type="text" name="tags" placeholder="Теги | введите теги через запятую" class=" w-full p-3 pr-18 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                                 
                                                 </div>
                                                 </div>
