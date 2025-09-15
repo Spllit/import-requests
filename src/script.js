@@ -17,23 +17,6 @@ const formInstances = []
 document.querySelector("#customFields > div > div.button_area > button")
 
 
-const onAddForms = () => {
-    
-    // if(Number(formAmountInput.value) > 100) formAmountInput.value = 100 
-    // if(Number(formAmountInput.value) < 0) formAmountInput.value = 1
-}
-// const onReportBtnClick = () => {
-//     const container = document.querySelector('#modalContainer')
-//     container.innerHTML = getReportModal()
-//     const modal = document.querySelector('#reportModal')
-//     const closeModal = (e) => {
-//         const target = e.target
-//         if(target.closest('.close_modal_btn') || target.getAttribute('id') === 'reportModal'){
-//             modal.remove()
-//         }
-//     }
-//     modal.addEventListener('mousedown', closeModal)
-// }
 const onImportModalClick = () => {
     let modalPage = 1
     const container = document.querySelector('#modalContainer')
@@ -236,25 +219,6 @@ const onImportModalClick = () => {
 }
 
 
-   
-// const openModalConfirmation = () => {
-//     const container = document.querySelector('#modalContainer')
-//     container.innerHTML += ConfirmationModal()
-//     const modal = document.querySelector('#modalConfirmation')
-//     const closeModal = (e) => {
-//         const target = e.target
-//         if(target.closest('[name="modalConfirmCancel"]') || target.getAttribute('id') === 'modalConfirmation'){
-//             modal.remove()
-//             return false
-//         }
-//         else if(target.closest('[name="modalConfirm"]')){
-//             modal.remove()
-//             return true
-//         }
-//     }   
-//     modal.addEventListener('click', closeModal)
-
-// }
 const duplicateInuteData = () => {
     const btns = container.querySelectorAll('button[name="duplicateInputData"]')
     const onDuplicateClick = (e, {target} = e) => {
@@ -326,17 +290,7 @@ function formateDate(value){
         return formatted
 }
 
-// function prepareData(){
 
-//     let json = {
-//         'requests': []
-//     }
-//     for(let i = 0; i < formInstances.length; i++){
-//         json.requests.push(formInstances[i].getFormData())
-//     }
-//     send(siteId, accessToken, JSON.stringify(json))
-
-// }
 async function prepareData() {
     const chunkSize = 100;
 
@@ -351,30 +305,7 @@ async function prepareData() {
         await send(siteId, accessToken, JSON.stringify(json));
     }
 }
-// function addMessage(messageType, message){
-//     const messageContainer = document.querySelector('#messageContainer')
-//     messageContainer.classList.remove('hide')
-//     if(messageType === 'error'){
-//         messageContainer.classList.add('error_maeesage')
-//     }
-//     else if(messageType === 'warning'){
-//         messageContainer.classList.add('warning_message')
-//     }
-//     else if(messageType === 'success'){
-//         messageContainer.classList.add('success_sent')
-//     }
-//     messageContainer.innerHTML = message
-// }
-// function removeMessage(){
-//     const messageContainer = document.querySelector('#messageContainer')
-//     if(!messageContainer.classList.contains('hide')){
-//         messageContainer.classList.remove('error_maeesage')
-//         messageContainer.classList.remove('success_sent')
-//         messageContainer.classList.remove('warning_message')
-//         messageContainer.classList.add('hide')
-//     }
-//     messageContainer.innerHTML = ''
-// }
+
 function removeErrors(input){
         input.classList.remove('border-red-600')
 }
@@ -383,19 +314,18 @@ function markRequiredInputs(){
     requiredInputs.forEach(input=>{
         if(!input.value){
             input.classList.add('border-red-600')
-            // addMessage('error', throwMessage('Не заполнены обязательные поля или контактные данные'))
             showNotification('Не заполнены обязательные поля или контактные данные', 'error')
         }
         else{
             removeErrors(input)
         }
     })
-    // removeMessage()
+
 }
 function verifyData() {
     console.log(formInstances.length, formInstances)
     markRequiredInputs();
-    // removeMessage();
+
 
     const hasRepeatedRequestNumbers = () => {
         const requestNumbers = formInstances.map(form => form.requestNumber);
@@ -410,22 +340,11 @@ function verifyData() {
         return false;
     };
 
-    // const showError = (message) => {
-    //     markRequiredInputs();
-    //     // addMessage('error', throwMessage(message));
-    //     showNotification(message)
-    // };
-
     const numbersRepeated = hasRepeatedRequestNumbers();
-    // for(let i = 0; i<= formInstances.length; i++){
-    //     if(!formInstances[i]['fio'] && !formInstances[i]['phoneNumber'] && !formInstances[i]['email']){
-    //         console.log(formInstances[i].formId)
-    //     }
-    //     // console.log(`ID формы: ${formInstances[i].formId}`, `ФИО: ${formInstances[i].fio}`, `Телефон: ${formInstances[i].phoneNumber}`, `Почта: ${formInstances[i].email}`, `Дата: ${formInstances[i].requestDate}`, `Номер заявки: ${formInstances[i].requestNumber}`)
-    // }
+
     const allFormsVerified = formInstances.every(form => {
         if (!form.verifyForm()) {
-            // showNotification('Не заполнены обязательные поля или контактные данные', 'error');
+
             showNotification('Не заполнены обязательные поля', 'error');
             return false;
         }
@@ -438,13 +357,12 @@ function verifyData() {
 
     if (!siteId || !accessToken) {
         showNotification('Не заполнены обязательные поля', 'error');
-        // valid = false;
         return;
     }
 
     if (numbersRepeated) {
         showNotification('Указаны повторяющиеся номера форм', 'error');
-        // valid = false;
+
         return;
     }
 
@@ -473,28 +391,9 @@ function verifyData() {
     function submitData() {
         prepareData();
         markRequiredInputs();
-        // removeMessage();
     }
 }
 
-
-// function collectFormData(){
-//     const forms = document.getElementsByTagName('form');
-//     for (const form of forms) {
-//         const idForm  = form.dataset.formId
-//         const data = new FormData(form)
-//         for (const formData of data) {
-//             formInstances[idForm][formData[0]] = formData[1]
-
-//         }
-
-//     }
-//     console.log(forms)
-//     siteId = siteIdInput.value
-//     accessToken = accessTokenInput.value
-//     verifyData()
-
-// }
 function addCustomFiled(form){
     const formId = form.dataset.formId 
     const currentFormContainer = document.querySelector(`form[data-form-id="${formId}"] [name="customFieldsContainer"]`)
@@ -505,35 +404,60 @@ function addCustomFiled(form){
         newField.innerHTML = getCustomField({formId, 'customFieldId':customFiledsAmout})
         currentFormContainer.appendChild(newField)
     }
-    // if(formInstances[formId].currentFormAmount){
-    //     formInstances[formId].currentFormAmount++
-    //     currentFormContainer.
-    // }
+
     
 }
 
-// function onAddCustomFiledBtnClick(){
-//     const customFieldBtn = document.querySelectorAll('button[name="customFieldBtn"]')
-//     customFieldBtn.forEach(btn => {
-//         btn.addEventListener('click', e => {
-//             const {target} = e
-//             e.preventDefault() 
-//             const closestForm = target.closest('form')
-//             addCustomFiled(closestForm)
-            
-//         })
-//     })
-// }
+function downloadTemplate(){
+    const headers = [
+        {name: 'Дата заявки (дд-мм-гггг чч:мм:сс)', width: 30},
+        {name: 'ФИО', width: 15},
+        {name: 'Номер телефона', width: 20},
+        {name: 'email', width: 15},
+        {name: 'Название заявки', width: 20},
+        {name: 'ID сессии', width: 15},
+        {name: 'source', width: 15},
+        {name: 'medium', width: 15},
+        {name: 'campaign', width: 15},
+        {name: 'content', width: 15},
+        {name: 'term', width: 15},
+        {name: 'tags', width: 15},
+        {name: 'Комментарий', width: 20},
+        {name: 'URL адреса заявки', width: 30},
+    ];
 
-// sendBtn.addEventListener('click', collectFormData)
-// addFormsBtn.addEventListener('click', addForms)
-// formAmountInput.addEventListener('input', onAddForms)
-// importDataBtn.addEventListener('click', onImportModalClick)
+    const worksheetData = [headers.map(header => header.name)];
+    const ws = XLSX.utils.aoa_to_sheet(worksheetData);
+    const wb = XLSX.utils.book_new();    
+    XLSX.utils.book_append_sheet(wb, ws, "Шаблон");
 
+    ws['!cols'] = headers.map(col => ({ wch: col.width }));
+    XLSX.writeFile(wb, "Шаблон импорта заявок.xlsx");
+}
+function generateReqNums(){
+    const reqNumsInputs = document.querySelectorAll('#container [name="requestNumber"]')
+
+    
+    if(formInstances.length && reqNumsInputs.length && formInstances.length == reqNumsInputs.length){
+        formInstances.forEach(form => {
+            const id = form['formId'] // id формы
+            const reqID = `imp${generateUniqueId()}` // id заявки
+
+            form['requestNumber'] = reqID
+            reqNumsInputs[id].value = reqID
+        })
+    }
+
+    function generateUniqueId() {
+        const timePart = Date.now() % 10000; // последние 4 цифры времени
+        const randomPart = Math.floor(Math.random() * 100); // 2 случайные цифры
+        return parseInt(`${timePart}${randomPart.toString().padStart(2, '0')}`);
+    }
+}
 document.addEventListener('input', (e)=>{
     const {target} = e
-    if(target.getAttribute('name') == 'formAmount') onAddForms()
-    else if(target.getAttribute('name') === 'siteId') siteId = target.value
+    // if(target.getAttribute('name') == 'formAmount') onAddForms()
+    if(target.getAttribute('name') === 'siteId') siteId = target.value
     else if(target.getAttribute('name') === 'access-token') accessToken = target.value
     else if(target.hasAttribute('name') && target.closest('form') && target.getAttribute('name') in formInstances[target.closest('form').dataset.formId]){
         formInstances[target.closest('form').dataset.formId][target.getAttribute('name')] = target.value
@@ -552,22 +476,16 @@ document.addEventListener('input', (e)=>{
 })
 document.addEventListener('click', (e) => {
     const {target} = e
-    if(target.hasAttribute('id') && target.getAttribute('id') === 'send'){
-        verifyData()
-    }
-    else if(target.hasAttribute('id') && target.getAttribute('id') === 'addForms'){
-        addForms()
-    }
-    else if(target.hasAttribute('id') && target.getAttribute('id') === 'importDataForm'){
-        onImportModalClick()
-    }
-    else if(target.hasAttribute('name') && target.getAttribute('name') === 'modalConfirmCancel'){
-
-    }
+    if(target.hasAttribute('id') && target.getAttribute('id') === 'send') verifyData()
+    else if(target.hasAttribute('id') && target.getAttribute('id') === 'addForms') addForms()
+    else if(target.hasAttribute('id') && target.getAttribute('id') === 'importDataForm') onImportModalClick()
+    else if(target.hasAttribute('name') && target.getAttribute('name') === 'modalConfirmCancel'){}
     else if((target.hasAttribute('name') && target.getAttribute('name') === 'customFieldBtn') || (target.closest('button') && target.closest('button').hasAttribute('name') && target.closest('button').getAttribute('name') === 'customFieldBtn')){
         e.preventDefault()
         addCustomFiled(target.closest('form'))
     }
+    else if(target.hasAttribute('name') && target.getAttribute('name') === 'downloadTemplate') downloadTemplate()
+    else if(target.hasAttribute('name') && target.getAttribute('name') === 'reqNumsGenerator') generateReqNums()
 })
 
 function drawForms(amount){
