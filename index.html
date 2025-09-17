@@ -10,7 +10,7 @@
 </head>
 <body> 
 
-    <div class="mx-auto sm:px-0  mt-10 w-full max-w-[95vw]">
+    <div class="mx-auto sm:px-0  mt-3 w-full max-w-[95vw]">
 
         <div role="list" class="divide-y divide-gray-200">
           <div class="text-white">
@@ -20,10 +20,10 @@
   <!-- Левая часть -->
   <div class="flex flex-wrap gap-3 w-full lg:w-auto">
     <input required name="siteId" type="number" placeholder="Site ID"
-      class="flex-1 min-w-[150px] px-4 py-2 text-sm sm:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+      class="flex-1 min-w-[150px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
     
     <input required name="access-token" type="text" placeholder="Access Token"
-      class="flex-1 min-w-[200px] px-4 py-2 text-sm sm:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+      class="flex-1 min-w-[200px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
     
     <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition w-full sm:w-auto" id="send">
       Отправить
@@ -44,17 +44,57 @@
     </button>
 
     <input name="formAmount" type="number" placeholder="Количество форм"
-      class="flex-1 min-w-[180px] px-4 py-2 text-sm sm:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+      class="flex-1 min-w-[180px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
 
     <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-green-600 text-white hover:bg-green-700 transition w-full sm:w-auto"
       id="addForms">Создать формы</button>
+      <div class="relative">
+            <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto"
+            name="menuButton">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </button>
+            <div name="menu_container" class="hidden z-50  px-4 py-2 flex flex-col absolute top-0 right-0 w-80 h-50 justify-around origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 transform scale-95">
+                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" id="importDataForm">
+                    <div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8M14 2L20 8M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 12V18M12 18L9 15M12 18L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        Импортировать данные
+                    </div>
+                </button>
+                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" name="reqNumsGenerator">
+                    <div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4V9H4.58152M19.9381 11C19.446 7.05369 16.0796 4 12 4C8.64262 4 5.76829 6.06817 4.58152 9M4.58152 9H9M20 20V15H19.4185M19.4185 15C18.2317 17.9318 15.3574 20 12 20C7.92038 20 4.55399 16.9463 4.06189 13M19.4185 15H15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        Генерировать номера заявок
+                    </div>
+                </button>
+                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" name="downloadTemplate">
+                    <div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 14V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M8 12L12 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        Скачать шаблон
+                    </div>
+                </button>
+            </div>
+      </div>
 
-    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto"
-      id="importDataForm">Импортировать данные</button>
-    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto"
-      name="reqNumsGenerator">Сгенерировать номера заявок</button>
-    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto"
-      name="downloadTemplate">Скачать шаблон</button>
+
   </div>
 
 </nav>

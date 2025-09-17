@@ -454,6 +454,14 @@ function generateReqNums(){
         return parseInt(`${timePart}${randomPart.toString().padStart(2, '0')}`);
     }
 }
+function showMenuContainer(){
+    const menuContainer = document.querySelector('[name="menu_container"]')
+    menuContainer.classList.remove('hidden')
+}
+function hideMenuContainer(){
+    const menuContainer = document.querySelector('[name="menu_container"]')
+    menuContainer.classList.add('hidden')
+}
 document.addEventListener('input', (e)=>{
     const {target} = e
     // if(target.getAttribute('name') == 'formAmount') onAddForms()
@@ -478,16 +486,30 @@ document.addEventListener('click', (e) => {
     const {target} = e
     if(target.hasAttribute('id') && target.getAttribute('id') === 'send') verifyData()
     else if(target.hasAttribute('id') && target.getAttribute('id') === 'addForms') addForms()
-    else if(target.hasAttribute('id') && target.getAttribute('id') === 'importDataForm') onImportModalClick()
+    else if(target.closest('#importDataForm')) onImportModalClick()
     else if(target.hasAttribute('name') && target.getAttribute('name') === 'modalConfirmCancel'){}
     else if((target.hasAttribute('name') && target.getAttribute('name') === 'customFieldBtn') || (target.closest('button') && target.closest('button').hasAttribute('name') && target.closest('button').getAttribute('name') === 'customFieldBtn')){
         e.preventDefault()
         addCustomFiled(target.closest('form'))
     }
-    else if(target.hasAttribute('name') && target.getAttribute('name') === 'downloadTemplate') downloadTemplate()
-    else if(target.hasAttribute('name') && target.getAttribute('name') === 'reqNumsGenerator') generateReqNums()
+    else if(target.closest('[name="downloadTemplate"]')) downloadTemplate()
+    else if(target.closest('[name="reqNumsGenerator"]')) generateReqNums()
 })
 
+document.addEventListener('mouseover', e =>{
+    const target = e.target
+    if(target.closest('[name="menuButton"]')) {
+        showMenuContainer()
+    }
+   
+})
+document.addEventListener('mouseout', e =>{
+    const target = e.target
+    if(!target.closest('[name="menuButton"]') && !target.closest('[name="menu_container"]')) {
+        hideMenuContainer()
+    }
+   
+})
 function drawForms(amount){
     const currentFormAmount = formInstances.length
     if(amount === currentFormAmount){

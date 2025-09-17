@@ -1,5 +1,5 @@
 @import "tailwindcss";
-body, nav{
+body, nav, [name="menu_container"]{
     background-color: #415a77;
 }
 /* .container{
