@@ -1,6 +1,6 @@
 import FormModel from "./FormModel.js"
 import FormTemplate from "../ui/FormTemplate.js"
-import generateReqNums from "../utils/GenerateReqNums.js"
+import generateReqNums from "../utils/generateReqNums.js"
 import ConfirmSendModalController from "../ui/ConfirmSendModalController.js"
 import showNotification from "../ui/showNotification.js"
 import getCustomField from "../ui/CustomFieldTemplate.js"
