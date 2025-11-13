@@ -2,15 +2,12 @@
 body, nav, [name="menu_container"]{
     background-color: #415a77;
 }
-/* .container{
-    background-color: ;
-} */
+
 .arrow {
     width: 20px;
     height: 20px;
     border-top: 1px solid #fff;
     border-right: 1px solid #fff;
-    /* margin-right: 60px; */
 } 
 .arrow-bottom {
     transform: rotate(135deg); }
@@ -24,10 +21,10 @@ body, nav, [name="menu_container"]{
 .container{
     color: white;
 }
-button:not([name="duplicateInputData"], [name="buttonReport"], [name="customFieldBtn"], [name="modalConfirm"], [name="modalConfirmCancel"]) {
+/* button:not([name="duplicateInputData"], [name="buttonReport"], [name="customFieldBtn"], [name="modalConfirm"], [name="modalConfirmCancel"], [name="finderHide"]) {
     background-color: #34d399;
 
-}
+} */
 
 .dropDownArrow{
     cursor: pointer;
@@ -43,15 +40,7 @@ textarea {
     max-height: 250px;
     min-height: 250px;
 }
-/* .error_maeesage{
-    background-color: #f15958;
-}
-.success_sent{
-    background-color: #34d399;
-}
-.warning_message{
-    background-color: #f1c328;
-} */
+
 .import_form{
     background-color: #4f5d70;
     position: absolute;
@@ -59,10 +48,51 @@ textarea {
 svg{
     margin: 0;
 }
-pre{
-    /* overflow: auto; */
-    /* overflow-x: scroll; */
-}
+
 dialog::backdrop{
     background-color: #364153;
 }
+
+/* Компактный скролл */
+.compact-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.compact-scrollbar::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.compact-scrollbar::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.compact-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+/* Убрать белый фон автозаполнения */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #4c5e75 inset !important;
+    -webkit-text-fill-color: #f1f5f9 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Для темной темы */
+input:-webkit-autofill {
+    -webkit-text-fill-color: #f1f5f9;
+    caret-color: #f1f5f9;
+}
+.input-error {
+  border: 2px solid #f87171 !important;
+  box-shadow: 0 0 0 2px #f87171;
+}
+
+.input-error:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #f87171 !important;
+  border-color: #f87171 !important;
+}
+

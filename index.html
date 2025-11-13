@@ -4,28 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@3.6.0/dist/date-fns.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    <link type="image/x-icon" href="icons/favicon.ico" rel="shortcut icon">
     <title>Импорт заявок </title>
 </head>
 <body> 
 
-    <div class="mx-auto sm:px-0  mt-3 w-full max-w-[95vw]">
+    <div class="mx-auto sm:px-0  mt-3 w-full max-w-[95vw] ">
 
         <div role="list" class="divide-y divide-gray-200">
-          <div class="text-white">
+          <div class="text-white relative">
       
  <nav class="flex flex-col lg:flex-row justify-between gap-6 mb-12 w-full">
   
   <!-- Левая часть -->
   <div class="flex flex-wrap gap-3 w-full lg:w-auto">
-    <input required name="siteId" type="number" placeholder="Site ID"
-      class="flex-1 min-w-[150px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+    <div class="relative flex-1 min-w-[150px] w-full sm:w-auto">
+    <input 
+        required 
+        name="siteId" 
+        id="siteId"
+        type="text" 
+        data-type="number" 
+        placeholder=" "
+        class="peer w-full px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400 transition"
+    />
     
-    <input required name="access-token" type="text" placeholder="Access Token"
-      class="flex-1 min-w-[200px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+    <label 
+        for="siteId"
+        class="absolute left-4 top-2 text-gray-500 text-xs transition-all duration-200 
+                peer-focus:-top-2 peer-focus:left-2 peer-focus:text-xs peer-focus:text-sky-400 peer-focus:bg-[#415a77]
+                peer-placeholder-shown:top-2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400
+                peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:left-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-400 bg-[#415a77] px-1"
+    >
+        Site ID
+    </label>
+</div>
     
-    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition w-full sm:w-auto" id="send">
+    <div class="relative flex-1 min-w-[200px] w-full sm:w-auto">
+    <input 
+        required 
+        name="access-token" 
+        id="access-token"
+        type="text" 
+        placeholder=" "
+        class="peer w-full px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400 transition"
+    />
+    
+    <label 
+        for="access-token"
+        class="absolute left-4 top-2 text-gray-500 text-xs transition-all duration-200 
+                peer-focus:-top-2 peer-focus:left-2 peer-focus:text-xs peer-focus:text-sky-400 peer-focus:bg-[#415a77]
+                peer-placeholder-shown:top-2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400
+                peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:left-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-400 bg-[#415a77] px-1"
+    >
+        Access Token
+    </label>
+</div>
+    <button class="px-4 py-2 text-gray-700 text-gray-700 font-medium sm:text-base rounded-lg bg-white hover:bg-gray-300 transition w-full sm:w-auto" name="send" id="send">
       Отправить
     </button>
   </div>
@@ -43,105 +81,288 @@
       </svg>
     </button>
 
-    <input name="formAmount" type="number" placeholder="Количество форм"
-      class="flex-1 min-w-[180px] px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-full sm:w-auto">
+    <div class="relative flex-1 min-w-[100px] max-w-[180px] w-full sm:w-auto">
+    <input 
+        name="formAmount" 
+        id="formAmount"
+        type="text" 
+        data-type="number" 
+        placeholder=" "
+        class="peer w-full px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400 transition"
+    />
+    
+    <label 
+    for="formAmount"
+        class="absolute left-4 top-2 text-gray-500 text-xs transition-all duration-200 
+                peer-focus:-top-2 peer-focus:left-2 peer-focus:text-xs peer-focus:text-sky-400 peer-focus:bg-[#415a77]
+                peer-placeholder-shown:top-2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400
+                peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:left-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-400 bg-[#415a77] px-1"
+    >
+        Количество форм
+    </label>
+</div>
 
-    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-green-600 text-white hover:bg-green-700 transition w-full sm:w-auto"
+    <button name="addForms" class="px-4 py-2 text-gray-700 font-medium text-gray-700 sm:text-base rounded-lg bg-white hover:bg-gray-300 text-black  transition w-full sm:w-auto"
       id="addForms">Создать формы</button>
-      <div class="relative">
-            <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto"
+      <div class="group relative inline-block">
+    <button class="px-4 py-2 text-sm sm:text-base rounded-lg bg-white hover:bg-gray-100 text-gray-700 transition w-full sm:w-auto border border-gray-200 shadow-sm hover:shadow-md"
             name="menuButton">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                <path d="M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            </button>
-            <div name="menu_container" class="hidden z-50  px-4 py-2 flex flex-col absolute top-0 right-0 w-80 h-50 justify-around origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 transform scale-95">
-                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" id="importDataForm">
-                    <div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8M14 2L20 8M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 12V18M12 18L9 15M12 18L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div>
-                        Импортировать данные
-                    </div>
-                </button>
-                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" name="reqNumsGenerator">
-                    <div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 4V9H4.58152M19.9381 11C19.446 7.05369 16.0796 4 12 4C8.64262 4 5.76829 6.06817 4.58152 9M4.58152 9H9M20 20V15H19.4185M19.4185 15C18.2317 17.9318 15.3574 20 12 20C7.92038 20 4.55399 16.9463 4.06189 13M19.4185 15H15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div>
-                        Генерировать номера заявок
-                    </div>
-                </button>
-                <button class="flex flex-wrap justify-around px-4 py-2 text-sm sm:text-base rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition w-full sm:w-auto" name="downloadTemplate">
-                    <div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 14V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V14" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M8 12L12 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <div>
-                        Скачать шаблон
-                    </div>
-                </button>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+    
+    <div name="menu_container" class="opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50 flex flex-col absolute top-full right-0 mt-2 w-64 origin-top-right rounded-lg shadow-xl ring-1 focus:outline-none transition-all duration-200 transform scale-95 group-hover:scale-100 p-2 space-y-1">
+        
+        <!-- Первый пункт -->
+        <button name="importDataForm" class="flex items-center gap-3 px-3 py-2.5 text-sm rounded-md text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 w-full group/item border border-transparent hover:border-blue-100">
+            <div class="flex items-center justify-center w-6 h-6">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover/item:text-blue-500">
+                    <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8M14 2L20 8M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 12V18M12 18L9 15M12 18L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-      </div>
+            <div class="flex-1 text-left font-medium">
+                Импортировать данные
+            </div>
+            <div class="w-2 h-2 rounded-full bg-gray-200 group-hover/item:bg-blue-400"></div>
+        </button>
+
+        <!-- Второй пункт -->
+        <button name="reqNumsGenerator" class="flex items-center gap-3 px-3 py-2.5 text-sm rounded-md text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 w-full group/item border border-transparent hover:border-blue-100">
+            <div class="flex items-center justify-center w-6 h-6">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover/item:text-blue-500">
+                    <path d="M4 4V9H4.58152M19.9381 11C19.446 7.05369 16.0796 4 12 4C8.64262 4 5.76829 6.06817 4.58152 9M4.58152 9H9M20 20V15H19.4185M19.4185 15C18.2317 17.9318 15.3574 20 12 20C7.92038 20 4.55399 16.9463 4.06189 13M19.4185 15H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="flex-1 text-left font-medium">
+                Генерировать номера заявок
+            </div>
+            <div class="w-2 h-2 rounded-full bg-gray-200 group-hover/item:bg-blue-400"></div>
+        </button>
+        <!-- Второй пункт -->
+        <button name="preview" class="flex items-center gap-3 px-3 py-2.5 text-sm rounded-md text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 w-full group/item border border-transparent hover:border-blue-100">
+            <div class="flex items-center justify-center w-6 h-6">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover/item:text-blue-500">
+    <!-- Глаз (упрощенный) -->
+    <path d="M12 9C9.5 9 7.5 10.5 6.5 12C7.5 13.5 9.5 15 12 15C14.5 15 16.5 13.5 17.5 12C16.5 10.5 14.5 9 12 9Z" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="12" r="1" fill="currentColor"/>
+    
+    <!-- Уголки по углам -->
+    <path d="M5 5L8 5L5 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19 5L16 5L19 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 19L5 16L8 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19 19L19 16L16 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
 
+            </div>
+            <div class="flex-1 text-left font-medium">
+                Превью форм
+            </div>
+            <div class="w-2 h-2 rounded-full bg-gray-200 group-hover/item:bg-blue-400"></div>
+        </button>
+
+        <!-- Четвертый пункт -->
+        <button  name="downloadTemplate" class="flex items-center gap-3 px-3 py-2.5 text-sm rounded-md text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 w-full group/item border border-transparent hover:border-blue-100">
+            <div class="flex items-center justify-center w-6 h-6">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover/item:text-blue-500">
+                    <path d="M4 14V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 12L12 16L16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 4V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="flex-1 text-left font-medium">
+                Скачать шаблон
+            </div>
+            <div class="w-2 h-2 rounded-full bg-gray-200 group-hover/item:bg-blue-400"></div>
+        </button>
+
+    </div>
+</div>
   </div>
-
 </nav>
-      
-            <div id="container" class="w-full">
-                <div id="errorNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
-                    opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
-                    <div class="flex items-start gap-3">
-                        <div class="text-red-600 mt-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                        </div>
-                        <div class="flex-1 text-sm text-gray-800"></div>
-                    </div>
+      <div id="container" class="w-full">
+        <div id="errorNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
+            opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
+            <div class="flex items-start gap-3">
+                <div class="text-red-600 mt-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 </div>
-                <div id="successNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
-                    opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
-                    <div class="flex items-start gap-3">
-                        <div class="text-green-600 mt-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        </div>
-                        <div class="flex-1 text-sm text-gray-800"></div>
-                    </div>
+                <div class="flex-1 text-sm font-medium text-gray-800"></div>
+            </div>
+        </div>
+        <div id="successNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
+            opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
+            <div class="flex items-start gap-3">
+                <div class="text-green-600 mt-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 </div>
-                <div id="warningNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
-                    opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
-                    <div class="flex items-start gap-3">
-                        <div class="text-yellow-600 mt-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M12 3L2 21h20L12 3z" />
-                        </svg>
-                        </div>
-                        <div class="flex-1 text-sm text-gray-800"></div>
-                    </div>
+                <div class="flex-1 text-sm font-medium text-gray-800"></div>
+            </div>
+        </div>
+        <div id="warningNotification" class="fixed bottom-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4 border border-gray-200
+            opacity-0 translate-y-10 transition-all duration-500 ease-out pointer-events-none z-50">
+            <div class="flex items-start gap-3">
+                <div class="text-yellow-600 mt-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M12 3L2 21h20L12 3z" />
+                </svg>
+                </div>
+                <div class="flex-1 text-sm font-medium text-gray-800"></div>
+            </div>
+        </div>
+      </div>
+         
+        <div id="modalContainer" class="w-full">
+            <div id="modalConfirmation"
+                tabindex="-1"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black/50  hidden">
+
+            <div
+                data-dialog="modal"
+                class="relative w-full max-w-lg p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600">
+
+                <!-- Header -->
+                <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 flex items-center justify-center bg-red-100 dark:bg-red-900 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 dark:text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v3m0 4h.01M12 5a7 7 0 100 14 7 7 0 000-14z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                    Некорректные источники
+                </h2>
+                </div>
+
+                <!-- Content -->
+                <div class="text-gray-700 dark:text-gray-200 leading-relaxed space-y-2 border-t pt-4 border-gray-200 dark:border-gray-600">
+                <p>
+                    Вы указали произвольные источники. В таком случае необходимо заполнить
+                    <span class="font-semibold">source, medium и campaign</span>.
+                </p>
+                <p>
+                    В противном случае заявка будет отправлена
+                    <span class="font-semibold">без источников.</span>
+                </p>
+                <p class="pt-2 text-lg font-semibold">
+                    Всё равно отправить формы?
+                </p>
+                </div>
+
+                <!-- Footer -->
+                <div class="flex justify-end pt-6 space-x-3">
+                <button name="modalConfirmCancel"
+                    class="py-2 px-4 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium transition dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200"
+                    data-dialog-close="true">
+                    Отмена
+                </button>
+
+                <button name="modalConfirm"
+                    class="py-2 px-4 rounded-md bg-red-600 hover:bg-red-700 text-white font-medium shadow-sm hover:shadow transition"
+                    data-dialog-close="true">
+                    Отправить
+                </button>
                 </div>
 
             </div>
-            <div id="modalContainer" class="w-full"></div>
+            </div>
+
+<div id="previewModal" tabindex="-1" class="hidden flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-4xl max-h-full absolute top-5 justify-center">
+    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+        
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mx-auto">
+          Превью форм
+        </h3>
+        
+        <!-- Кнопка закрытия справа -->
+        <button type="button" name="closeModal" class="close_modal_btn text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Body with Scrollable Content -->
+      <div class="px-4 pb-4 pt-4 pl-4 overflow-y-auto max-h-200 compact-scrollbar" name="previewModalBody">
+        <!-- Данные будут добавляться сюда динамически -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+             <div id="importModal" tabindex="-1" class="hidden flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-[calc(100%-1rem)] max-h-full"> <div class="relative p-4 w-full max-w-4xl max-h-full absolute top-5 justify-center"> <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700"> <!-- Header --> 
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <div class="navigate"></div>
+                    <!-- Кнопка навигации слева -->
+                    <button type="button" name="pagePrev" class="prev_btn hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white text-white opacity-70 hover:opacity-100 transition disabled:opacity-30 bg-transparent rounded-lg text-sm w-8 h-8 flex justify-center items-center hidden">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1 3 7l6 6"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Заголовок по центру -->
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mx-auto">
+                        Загрузить данные
+                    </h3>
+                    
+                    <!-- Кнопка закрытия справа -->
+                    <button type="button" name="closeModal" class="close_modal_btn text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+                        </svg>
+                    </button>
+                </div>
+                    <!-- Body --> <div class="px-4 pb-4 pt-4 pl-4" name="importModalBody"> </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+            <div id="finder" class="z-100 translate-x-[calc(100%-1.5rem)] dark:bg-gray-700 fixed right-0 bottom-1/2 translate-y-1/2 flex items-stretch h-28 shadow-xl rounded-l-2xl overflow-hidden">
+                <!-- Кнопка со стрелкой -->
+                 <div name="finderHide" class="cursor-pointer rotate-180 hover:bg-gray-600 h-full w-6 flex items-center justify-center transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                 </div>
+                    
+
+                <!-- Основной блок -->
+                <div class="text-white w-15 h-28 flex flex-col items-center justify-center rounded-l-2xl space-y-2">
+                    <!-- Текущее значение страницы -->
+                    <input data-type="number" value="1" name="finderInput" class="w-15 text-center bg-transparent border-b border-gray-500 outline-none text-2xl font-medium"
+                    />
+                    <!-- Максимум страниц -->
+                    <span name="finderAmount" class="text-sm text-gray-400"></span>
+                </div>
+            </div>
+      
+            <div name="lifter" class="z-100 shadow-[0_4px_12px_rgba(0,0,0,0.15)] cursor-pointer fixed right-6 bottom-6 flex items-center justify-center w-15 h-15 bg-gray-700 rounded-full shadow-xl cursor-pointer hover:bg-gray-600 transition-all duration-200 opacity-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                </svg>
+            </div>
+            </div>
       
           </div>
         </div>
       </div>
 
-            
-  <script type="module" src="src/script.js"></script>
+
+    <script type="module" src="src/script.js"></script>
 </body>
 </html>

@@ -1,17 +1,17 @@
 export default class Form{
-    constructor(formId){
+    constructor(formId, ){
         this.formId = formId
     }
 
-requestUrl = '' 
+_requestUrl = '' 
 requestDate = '' 
-requestNumber = '' 
-subject = ''
-fio = '' 
+_requestNumber = '' 
+_subject = ''
+_fio = '' 
 phoneNumber = '' 
 email = ''
-sessionId = ''
-comment = ''
+_sessionId = ''
+_comment = ''
 tags = ''
 source = ''
 medium = ''
@@ -20,18 +20,56 @@ content = ''
 term = ''
 manager = ''
 customFields = []
+customFieldsMaxSize = 20
 
-get customFiledsAmout(){
-    if(this.customFields.length < 20){
-        if(this.customFields.length === 0){
-            return 0
-        }
-        else{
-            return this.customFields.length
-        }
-    }
-    return false
+set requestNumber(number){
+    this._requestNumber = number.slice(0,100)
 }
+get requestNumber(){
+    return this._requestNumber
+}
+set subject(subject){
+    this._subject = subject.slice(0,100)
+}
+get subject(){
+    return this._subject
+}
+set requestUrl(requestUrl){
+    this._requestUrl = requestUrl.slice(0,1000)
+}
+get requestUrl(){
+    return this._requestUrl
+}
+set sessionId(sessionId){
+    this._sessionId = sessionId.slice(0, 100)
+}
+get sessionId(){
+    return this._sessionId
+}
+set fio(fio){
+    this._fio = fio.slice(0,100)
+}
+get fio(){
+    return this._fio
+}
+set comment(comment){
+    this._comment = comment.slice(0,1000)
+}
+get comment(){
+    return this._comment
+}
+
+// get customFiledsAmout(){
+//     if(this.customFields.length < 20){
+//         if(this.customFields.length === 0){
+//             return 0
+//         }
+//         else{
+//             return this.customFields.length
+//         }
+//     }
+//     return false
+// }
 addCustomFiled(){
     if(this.customFields.length < 20){
         this.customFields.push({field: '', value: ''})
