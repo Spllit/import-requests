@@ -79,7 +79,6 @@ export default class FormsController{
            const formId = +(target.closest('[name="customFieldBtn"]').dataset.formid)
            this.manager.createCustomField(formId)
         }
-        console.log(this)
         if(target.closest('[name="customDropdownMenu"]')){
             const fieldType = target.dataset.customfieldtype
             const container = target.closest('[name="customField"]')

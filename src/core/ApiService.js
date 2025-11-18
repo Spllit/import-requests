@@ -17,7 +17,7 @@ export default class Send{
         })
         if(successfulySent < amoutRequests){
             showNotification(`Часть заявок не была отправлена! Отправлено: ${successfulySent} из ${amoutRequests}`, 'error')
-            this.manager.saveUnloadedForms(unsendedIDs)
+            // this.manager.saveUnloadedForms(unsendedIDs)
         }
         else{
             showNotification(`Заявка(и) успешно отправлены! ${successfulySent} из ${amoutRequests}`, 'success')

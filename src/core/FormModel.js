@@ -119,8 +119,13 @@ export default class FormModel {
     }
 
     #buildCustomFields(data = {}) {
-        const filtered = this.#formProps.customFields.filter(
-            ({ field, value }) => field && value
+        const filtered = []
+        this.#formProps.customFields.forEach(
+            ({ field, value }) => {
+                if(field && value){
+                    filtered.push({field,value})
+                }
+            }
         );
 
         if (filtered.length) data.customFields = filtered;
@@ -138,6 +143,7 @@ export default class FormModel {
             requestNumber,
             requestUrl,
             sessionId,
+            manager,
         } = this.#formProps;
 
         const data = {
@@ -151,6 +157,7 @@ export default class FormModel {
         if (phoneNumber) data.phoneNumber = phoneNumber;
         if (email) data.email = email;
         if (fio) data.fio = fio;
+        if(manager) data.manager = manager;
 
         this.#buildComment(data);
         this.#buildTags(data);

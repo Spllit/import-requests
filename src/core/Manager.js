@@ -368,9 +368,9 @@ export default class Manager{
                 const json = {
                     requests: chunk.map(form => form.getFormData())
                 };
-        
-                // Ждём, пока send завершится, прежде чем перейти к следующей пачке
                 this.sendApi.send(this.state.siteId, this.state.accessToken, JSON.stringify(json));
+                // добавляем паузу в пол секунды между запросами
+                await new Promise(res => setTimeout(res, 500));
             }
         }
     }
