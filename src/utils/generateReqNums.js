@@ -1,12 +1,17 @@
-export default function generateReqNums(){
-    const  generateUniqueId = (()=>{
-        let counter = 0;
-        return function(){
-            const timePart = Date.now() % 10000; // последние 4 цифры времени
-            const randomPart = Math.floor(Math.random() * 100); // 2 случайные цифры
-            counter = (counter + 1) % 1000;
-            return parseInt(`${timePart}${counter.toString().padStart(2, '0')}${randomPart}`);
-        }
-    })();    
-    return generateUniqueId
+export default function generateReqNums() {
+  let lastTime = 0;
+  let counter = 0;
+
+  return function () {
+    const now = Date.now();
+
+    if (now === lastTime) {
+      counter++;
+    } else {
+      lastTime = now;
+      counter = 0;
+    }
+
+    return Number(`${now}${counter.toString().padStart(3, '0')}`);
+  };
 }
