@@ -12,6 +12,6 @@ export default function generateReqNums() {
       counter = 0;
     }
 
-    return Number(`${now}${counter.toString().padStart(3, '0')}`);
+    return `${now}${String(counter).padStart(6, '0')}`;
   };
 }
